@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    color: green;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    color: teal;
+    text-align: center;
+    text-decoration: underline dotted rgb(108, 103, 103);
+}
+
+body {
+    background-color: #F0FCFF;
+}
+
+button {
+    padding: 3px 5px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: rgb(183, 176, 176);
+    cursor: pointer;
+    transform: translatey(-0.25rem)
+}
+
+.img {
+    border: 3px solid gray;
+    border-radius: 7px;
+}

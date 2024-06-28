@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Image Classification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="header">Image Classfication</h1>
+        <form class="form-group" action="/submit" method="POST" enctype="multipart/form-data">
+            <section>
+                <label for="file">Upload Your Image :</label>
+                <input type="file" name="my_image" id="file">
+            </section>
+            <img src="{{ img_path }}" alt="choose you image" class="img" height="400px" width="400px" />
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if prediction %}
+        <h2> Your Prediction : <i> {{prediction}} </i></h2>
+        {% endif %}
+
+        <h2>ingredients</h2>
+        {% if prediction in result %}
+            {% set ingredients = result[prediction] %}
+            <ol>
+            {% for ingredient in ingredients %}
+                <li>{{ ingredient }}</li>
+            {%endfor%}
+            </ol>
+        {% endif %}
+
+    </div>
+</body>
+
+</html>
