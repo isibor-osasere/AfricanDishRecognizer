@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, url_for
 from keras.models import load_model
 import tensorflow as tf
 from werkzeug.utils import secure_filename
-import matplotlib.image as mpimg
 import numpy as np
 import os
 from pymongo import MongoClient
