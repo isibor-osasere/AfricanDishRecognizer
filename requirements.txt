@@ -1,7 +1,6 @@
 flask
 keras
 numpy
-bson==0.5.10
 werkzeug
 dnspython==2.1.0 
 tensorflow==2.16.1
