@@ -5,6 +5,7 @@ import tensorflow as tf
 from werkzeug.utils import secure_filename
 import numpy as np
 import os
+import requests
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
@@ -19,7 +20,40 @@ document_id = ObjectId("667ca8a8fccb94110da6b906")
 
 # Configuration
 UPLOAD_FOLDER = 'static/uploads/'
+MODEL_PATH = "nigeria_food_model_efficientNetB3.h5"
+GOOGLE_DRIVE_FILE_ID = "1hgNOrwZavAMQM8-Oe_fhF8w7HLRG0S-Z"
 
+# Ensure the upload folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# Download the model if it doesn't exist locally
+def download_file_from_google_drive(file_id, destination):
+    URL = "https://drive.google.com/uc?export=download"
+    session = requests.Session()
+    response = session.get(URL, params={'id': file_id}, stream=True)
+    token = get_confirm_token(response)
+    if token:
+        params = {'id': file_id, 'confirm': token}
+        response = session.get(URL, params=params, stream=True)
+    save_response_content(response, destination)
+
+def get_confirm_token(response):
+    for key, value in response.cookies.items():
+        if key.startswith('download_warning'):
+            return value
+    return None
+
+def save_response_content(response, destination):
+    CHUNK_SIZE = 32768
+    with open(destination, "wb") as f:
+        for chunk in response.iter_content(CHUNK_SIZE):
+            if chunk:  # filter out keep-alive new chunks
+                f.write(chunk)
+                
+if not os.path.exists(MODEL_PATH):
+    download_file_from_google_drive(GOOGLE_DRIVE_FILE_ID, MODEL_PATH)
+    
 # Ensure the upload folder exists
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -46,7 +80,7 @@ class_names = ['Abacha (African Salad)',
  'Vegetable Soup']
 
 #loading in our model
-model = load_model ("nigeria_food_model_efficientNetB3.h5")
+model = load_model (MODEL_PATH)
 
 def predict_label (img_path):
     """
