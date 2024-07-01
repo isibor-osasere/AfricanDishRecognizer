@@ -52,7 +52,7 @@ Follow the ingredient list and instructions to prepare your African dish.
 If you prefer to run the project locally, follow these steps:
 
 Clone the repository:
-git clone https://github.com/yourusername/AfricanDishRecognizer.git
+git clone https://github.com/isibor-osasere/AfricanDishRecognizer.git
 cd AfricanDishRecognizer
 
 Install the required dependencies:
