@@ -1,5 +1,6 @@
 flask
 keras
+requests
 numpy
 werkzeug
 dnspython==2.1.0 
