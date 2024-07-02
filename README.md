@@ -33,8 +33,9 @@ Detailed ingredient lists for a variety of African dishes
 **Usage**
 
 You can access and use the AfricanDishRecognizer application via the following link:
+https://africandishrecognizer-2.onrender.com
 
-Hosted Application on Railway
+Hosted Application on Render
 
 Capture or upload a photo: 
 Use the application interface to take a photo of an African dish or upload an existing photo.
@@ -74,5 +75,11 @@ This project is licensed under the MIT License. See the LICENSE file for details
 For any questions or inquiries, please contact:
 
 Name: Isibor Osasere
+
+Linkedin: https://www.linkedin.com/in/isibor-osasere
+
 Email: isiborosasere8@gmail.com
+
+Phone: +2349135761114
+
 GitHub: isibor-osasere
