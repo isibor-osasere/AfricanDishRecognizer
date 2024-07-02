@@ -80,6 +80,7 @@ class_names = ['Abacha (African Salad)',
  'Vegetable Soup']
 
 #loading in our model
+model = load_model (MODEL_PATH)
 def load_model():
     global model
     model = load_model (MODEL_PATH)
