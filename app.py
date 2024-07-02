@@ -80,7 +80,6 @@ class_names = ['Abacha (African Salad)',
  'Vegetable Soup']
 
 #loading in our model
-@app.before_first_request
 def load_model():
     global model
     model = load_model (MODEL_PATH)
@@ -100,10 +99,14 @@ def predict_label (img_path):
     pred_class = class_names[prediction.argmax ()]
     
     return pred_class
-
+    
+def ensure_load_model ():
+    if model == None:
+        load_model ()
 #routes
 @app.route ("/")
 def home ():
+    ensure_load_model ()  # Ensure model is loaded before serving request
     return render_template ("index.html")
 
 @app.route ("/submit", methods = ['GET', "POST"])
